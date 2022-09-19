@@ -57,7 +57,7 @@ namespace UserRegistrationWithRegexValidations
                 case "5":
                     {
                         Console.Write("\n >>>>>> Enter password to check : "); var passwordL = Console.ReadLine();
-                        Regex passwordValidation = new Regex("^(.{,7}|[^A-Z]*|[^0-9]*|[^.]*\\W{2,}[^.]*|[^\\W]+)$");
+                        Regex passwordValidation = new Regex("^(.{0,7}|[^A-Z]*|[^0-9]*|[^.]*\\W{2,}[^.]*|[^\\W]+)$");
 
                         Func<Regex, bool> checkPass = e => e.IsMatch(passwordL);
 
