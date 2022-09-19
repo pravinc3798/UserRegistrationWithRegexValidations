@@ -1,4 +1,6 @@
-﻿namespace UserRegistrationWithRegexValidations
+﻿using System.Text.RegularExpressions;
+
+namespace UserRegistrationWithRegexValidations
 {
     internal class Program
     {
@@ -7,7 +9,7 @@
             var nameNumberEmail = new NameNumberEmailValidations();
             var pass = new PasswordValidation();
 
-            Console.Write("\n 1. Check Name (Start with Caps and has minimum 3 Characters) \n 2. Check Number (91 1234567890)(2 digits space 10 digits) \n 3. Email Check (auto checks the list of emails provided in the document) \n 4. Password Check \n 5. Exit \n\n >>>> Enter desired input : "); var input = Console.ReadLine();
+            Console.Write("\n 1. Check Name (Start with Caps and has minimum 3 Characters) \n 2. Check Number (91 1234567890)(2 digits space 10 digits) \n 3. Email Check (auto checks the list of emails provided in the document) \n 4. Password Check \n 5. Validate Password Using Lambda Expression \n 6. Exit \n\n >>>> Enter desired input : "); var input = Console.ReadLine();
 
             switch (input)
             {
@@ -53,6 +55,21 @@
                         break;
                     }
                 case "5":
+                    {
+                        Console.Write("\n >>>>>> Enter password to check : "); var passwordL = Console.ReadLine();
+                        Regex passwordValidation = new Regex("^(.{,7}|[^A-Z]*|[^0-9]*|[^.]*\\W{2,}[^.]*|[^\\W]+)$");
+
+                        Func<Regex, bool> checkPass = e => e.IsMatch(passwordL);
+
+                        if (!checkPass(passwordValidation))
+                            Console.WriteLine("Test Passed For : " + passwordL);
+                        else
+                            Console.WriteLine("Test Failed For : " + passwordL);
+
+                        Main(args);
+                        break;
+                    }
+                case "6":
                     {
                         break;
                     }
